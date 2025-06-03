@@ -1,0 +1,28 @@
+#include <iostream>
+
+class Car{
+    public:
+        std::string name;
+        Car* circuit;
+        Car(std::string n) : name(n), circuit(nullptr) {}
+        void relayCircuitMessage(Car* c) {
+            circuit = c;
+        }
+        void report(){
+            if(circuit){
+                std::cout << "Circuit message from: " << circuit->name << std::endl;
+            }else{
+                std::cout << "No message from circuit" << std::endl;
+            }
+        }
+        ~Car() {
+            std::cout << "Car " << name << " is destroyed." << std::endl;
+        }
+};
+
+int main(){
+    Car car("Ferrari") , circuit("Overheated Engine");
+    car.relayCircuitMessage(&circuit);
+    car.report();
+    return 0;
+}
