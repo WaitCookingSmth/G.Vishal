@@ -1,0 +1,53 @@
+#include <iostream>
+
+class Course;
+class Student{
+    public:
+    std::string name;
+
+    Student() : name("") {};
+    Student(std::string n) : name(n) {};
+    void greet() {
+        std::cout << "Hello, my name is " << name << "!" << std::endl;
+    }
+
+    Course* course;
+    void setCourse(Course* c);
+    ~Student();
+};
+
+class Course{
+    public:
+    std::string title;
+    
+    Course() : title("") {};
+    Course(std::string t) : title(t) {};
+
+    Student* student;
+    void enrollStudent(Student* s){
+        student = s;
+        std::cout << "Enrolled " << student->name << " in the course: " << title << std::endl;
+    }
+    ~Course() {
+        std::cout << "Course " << title << " is being destroyed." << std::endl;
+    }
+};
+
+void Student::setCourse(Course* c){
+    course = c;
+    std::cout << name << " is now enrolled in the course: " << course->title << std::endl;
+};
+
+Student::~Student(){
+    std::cout << "Student " << name << " is being destroyed." << std::endl;
+};
+
+int main() {
+    Student s("Mahesh");
+    s.greet();
+    Course c("OODP");
+    c.enrollStudent(&s);
+    s.setCourse(&c);
+
+    return 0;
+}
