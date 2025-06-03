@@ -1,1 +1,38 @@
+#include <iostream>
 
+
+class Student{
+    public:
+    std::string name;
+    Student() : name("") {};
+    Student(std::string n) : name(n) {};
+    void print() const {
+        std::cout << "Student Name: " << name << std::endl;
+    }
+    ~Student() {
+        std::cout << "Destructor called for Student: " << name << std::endl;
+    }
+};
+
+class univ{
+    Student* student;
+    public:
+    univ(Student* s) : student(s) {};
+    void print() const {
+        if (student) {
+            student->print();
+        } else {
+            std::cout << "No student assigned." << std::endl;
+        }
+    }
+    ~univ() {
+        std::cout << "Destructor called for univ." << std::endl;
+    }
+};
+
+int main() {
+    Student s("Suresh");
+    univ student(&s);
+    student.print();
+    return 0;
+}
