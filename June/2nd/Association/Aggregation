@@ -1,0 +1,46 @@
+#include <iostream>
+
+class Car{
+    public:
+        std::string name;
+        Car(std::string carName) : name(carName) {}
+        ~Car() {
+            std::cout << "Car " << name << " is destroyed." << std::endl;
+        }
+};
+
+class Garage{
+    public:
+        Car* collection[20];
+        int count = 0;
+        
+        void addToGarage(Car* newCar){
+            if(count < 20){
+                collection[count] = newCar;
+                count++;
+            } else {
+                std::cout << "Garage is full!" << std::endl;
+            }
+        }
+
+        void displayCollection(){
+            for(int i = 0; i < count; i++){
+                std::cout << "Car " << (i + 1) << ": " << collection[i]->name << std::endl;
+            }
+        }
+        ~Garage() {
+            std::cout << "Garage is destroyed." << std::endl;
+        }
+};
+
+int main(){
+    Car car1("Audi R8");
+    Car car2("Tesla Model S");
+    Car car3("Ford Mustang");
+    Garage JanataGarage;
+    JanataGarage.addToGarage(&car1);
+    JanataGarage.addToGarage(&car2);
+    JanataGarage.addToGarage(&car3);
+    JanataGarage.displayCollection();
+    return 0;
+}
