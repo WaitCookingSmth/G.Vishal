@@ -1,0 +1,23 @@
+#include <iostream>
+
+class Engine{
+    public:
+     void print() {
+        std::cout << "There is an engine!" << std::endl;
+     }
+};
+
+class Car{
+    public:
+        void start(Engine& engine){
+            engine.print();
+            std::cout << "Car is starting!" << std::endl;
+        }
+};
+
+int main(){
+    Engine engine;
+    Car car;
+    car.start(engine);
+    return 0;
+}
