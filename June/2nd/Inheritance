@@ -1,0 +1,22 @@
+#include <iostream>
+
+class Car{
+    public:
+        void basicParts(){
+            std::cout << "Basic parts of a car include: wheels, engine, and chassis." << std::endl;
+        }
+};
+
+class Mustang : public Car {
+    public:
+        void specificParts(){
+            std::cout << "Specific parts of a Mustang include: V8 engine, sporty suspension, and unique body styling." << std::endl;
+        }
+};
+int main() {
+    Mustang ShelbyGT500;
+    ShelbyGT500.basicParts();
+    ShelbyGT500.specificParts();
+    
+    return 0;
+}
